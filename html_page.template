@@ -45,21 +45,29 @@
 </head>
 
 <script>
-    console.log("scaling");    
     function scaleText() {
+        console.log("Scaling text starting.");    
+        var t0 = performance.now();
         $(".fixed_div").each(function(){
             var scaledDiv = $(this).children('.scaled_div');
 
             while($(this).height() < scaledDiv.height()){
                 var text = $(this).find('.scalable_text');
                 var textSize = parseInt(text.css("font-size"))-1;
+                // Infinite loop on too big text
+                if(textSize <= 8){
+                    // TODO add css for hidden overflow if text cant fit
+                    console.log("Text overflow, overflow set to hidden.");
+                    break;
+                }
                 text.css("font-size", textSize);
             }
 
 
         });
+        var t1 = performance.now();
+        console.log("Scaling complete in " + (t1-t0) + " milliseconds.");    
     }
-    console.log("scaled");    
 </script>
 
 <body style="margin: 0px;" onload="scaleText();">

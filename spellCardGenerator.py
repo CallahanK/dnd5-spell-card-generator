@@ -17,37 +17,50 @@ def main():
 
     htmlOutput = open('output_test.html', 'w')
 
-    # spell_list = root.find('compendium')
+    # TODO set via args
+    # filters
+    classes = ["Ranger", "Wizard"]
+    level = 3  # TODO add less then, also use 0 for cantrips 
+    school = ['A', 'EN']  # abbrv
+    ritual = True
 
     spellDivList = []
 
     for spell in root:
+
         classes = spell.find('classes').text
-        if "Ranger" in classes:
+        if "Bard" in classes:
 
-            name = spell.find('name').text
-            level = spell.find('level').text
-            school = spell.find('school').text
-            ritual = spell.findtext('ritual', 'false')
-            time = spell.find('time').text
-            target = spell.find('range').text
-            components = spell.find('components').text
-            duration = spell.find('duration').text
+            mySpell = parseXMLtoSpell(spell)
 
-            text = []
-            for text_block in spell.findall('text'):
-                if text_block.text is not None:
-                    text.append(text_block.text)
-
-            mySpell = Spell(name, level, school, ritual,
-                            time, target, components, duration, text)
             spellDivList.append(spellDivTemplate.safe_substitute(mySpell.__dict__))
             # mySpell.display()
             # out.write(template.safe_substitute(mySpell.__dict__))
             # mySpell.toHTML()
             # break
 
+    print(len(spellDivList))
     htmlOutput.write(htmlPageTemplate.safe_substitute(content_all=" ".join(spellDivList)))
+
+
+def parseXMLtoSpell(spell):
+    name = spell.find('name').text
+    level = spell.find('level').text
+    school = spell.find('school').text
+    ritual = spell.findtext('ritual', 'false')
+    time = spell.find('time').text
+    target = spell.find('range').text
+    components = spell.find('components').text
+    duration = spell.find('duration').text
+
+    text = []
+    for text_block in spell.findall('text'):
+        if text_block.text is not None:
+            text.append(text_block.text)
+
+    mySpell = Spell(name, level, school, ritual,
+                    time, target, components, duration, text)
+    return mySpell
 
 
 class Spell:
@@ -67,7 +80,7 @@ class Spell:
         self, name, level, school, ritual,
             time, target, components, duration, text):
         self.name = name
-        self.level = level
+        self.level = level if (level != 0) else "Cantrip"
         self.school = self.schools[school]
         self.ritual = ritual == 'YES'
         self.time = time
