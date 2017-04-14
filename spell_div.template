@@ -1,0 +1,28 @@
+<div class="fixed_div print" style="width: 3in; height: 5in; border: 1px solid black; ">
+    <div class="scaled_div">
+        <table>
+            <tr>
+                <td>
+                    <span class="spell_name">$name</span><br>
+                    <span class="school_name">$school</span>
+                </td>
+                <td class="level">Level: $level</td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="attr_header">Casting Time: </span><span class="attr_body">$time</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="attr_header">Target: </span><span class="attr_body">$target</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="attr_header">Components: </span><span class="attr_body">$components</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="attr_header">Duration: </span><span class="attr_body">$duration</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><div class="scalable_text">$htmlText</div></td>
+            </tr>
+        </table>        
+    </div>
+</div>

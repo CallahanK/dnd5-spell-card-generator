@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spell list</title>
+    <style type="text/css">
+    
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            vertical-align: top;
+        }
+        table {
+            margin: 2px;
+        }
+        .print {
+            page-break-after:always;
+        }
+        .spell_name {
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .school_name {
+            font-size: 1em;
+            font-style: italic;
+        }
+        .attr_header {
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .attr_body {
+            font-size: 0.9em;
+        }
+        .level {
+            text-align:right; 
+            width:65px;
+        }
+        .scalable_text {
+            font-size: 0.9em;
+            /*line-height: 1em;*/
+        }
+    </style>
+    <script src="jquery-3.2.1.slim.min.js"></script>
+</head>
+
+<script>
+    console.log("scaling");    
+    function scaleText() {
+        $(".fixed_div").each(function(){
+            var scaledDiv = $(this).children('.scaled_div');
+
+            while($(this).height() < scaledDiv.height()){
+                var text = $(this).find('.scalable_text');
+                var textSize = parseInt(text.css("font-size"))-1;
+                text.css("font-size", textSize);
+            }
+
+
+        });
+    }
+    console.log("scaled");    
+</script>
+
+<body style="margin: 0px;" onload="scaleText();">
+$content_all
+
+</body>
+</html>

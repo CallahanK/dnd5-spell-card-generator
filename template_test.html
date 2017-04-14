@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spell list</title>
+    <style type="text/css">
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        vertical-align: top;
+        font-size:0.875em;
+    }
+    strong {
+        font-size: 0.9em;
+    }
+    </style>
+    <script src="jquery-3.2.1.slim.min.js"></script>
+</head>
+
+<body style="margin: 0px;">
+    <div style="width: 3in; height: 5in; border: 1px solid black; ">
+        <table style="margin: 2px">
+            <tr>
+                <td>
+                    <strong style="font-size: 1em;">$name</strong><br>
+                    $school
+                </td>
+                <td align="right" style="width:65px;">Level: 10</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Casting Time:</strong> $time</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Target:</strong> $target</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Components:</strong> $components</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Duration:</strong> $duration</td>
+            </tr>
+            <tr>
+                <td colspan="2">$htmlText</td>
+            </tr>
+        </table>        
+
+    </div>
+</body>
+</html>
